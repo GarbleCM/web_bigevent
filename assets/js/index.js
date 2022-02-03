@@ -11,14 +11,12 @@ $(function(){
             layer.close(index);
         });
     })
+    
 })
 function getUserInfo(){
     $.ajax({
         method: 'GET',
         url: '/my/userinfo',
-        /* headers:{
-            Authorization: localStorage.getItem('token') 
-        }, */
         success: function(res){
             if(res.status !== 0){
                 return layui.layer.msg(res.message);
@@ -28,17 +26,16 @@ function getUserInfo(){
         },    
     })
 }
-
 /* 渲染用户头像 */
-function renderAvatar(data){
+function renderAvatar(user){
     // 1. 获取用户的名称
-    var name = data.nickname || data.username;
+    var name = user.nickname || user.username;
     // 2. 渲染用户名
     $('#welcome').html('欢迎&nbsp;&nbsp;' + name)
     // 3. 按需渲染用户头像
-    if(data.user_pic !== null){
+    if(user.user_pic !== null){
         // 3.1 优先渲染图片头像
-        $('.layui-nav-img').attr('src',data.user_pic).show();
+        $('.layui-nav-img').attr('src',user.user_pic).show();
         $('.user-avatar').hide();
     }else{
         // 3.2 无图片头像渲染文本头像
@@ -47,3 +44,6 @@ function renderAvatar(data){
         $('.user-avatar').html(first).show()
     }
 }
+
+
+    
