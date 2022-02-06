@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- 导入layui样式 -->
+        <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
+        <!-- 导入cropper的样式 -->
+        <link rel="stylesheet" href="/assets/lib/cropper/cropper.css" />
+        <!-- 导入自己的样式 -->
+        <link rel="stylesheet" href="/assets/css/article/art_edit.css">
+    </head>
+
+    <body>
+        <div class="layui-card">
+            <div class="layui-card-header">写文章</div>
+            <div class="layui-card-body">
+                <form class="layui-form" id="form-edit">
+                    <!-- 文章标题 -->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">文章标题</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <!-- 文章类别 -->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">文章类别</label>
+                        <div class="layui-input-block">
+                            <select name="cate_id" lay-verify="required" id="cate_id">
+
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 文章内容 -->
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">文章内容</label>
+                        <div class="layui-input-block">
+                            <textarea name="content" class="layui-textarea" id="editor"></textarea>
+                        </div>
+                    </div>
+                    <!-- 文章封面 -->
+                    <div class="layui-form-item">
+                        <!-- 左侧的 label -->
+                        <label class="layui-form-label">文章封面</label>
+                        <!-- 选择封面区域 -->
+                        <div class="layui-input-block cover-box">
+                            <!-- 左侧裁剪区域 -->
+                            <div class="cover-left">
+                                <img id="image" src="/assets/images/sample2.jpg" alt="" />
+                            </div>
+                            <!-- 右侧预览区域和选择封面区域 -->
+                            <div class="cover-right">
+                                <!-- 预览的区域 -->
+                                <div class="img-preview"></div>
+                                <!-- 选择封面按钮 -->
+                                <button type="button" class="layui-btn layui-btn-danger"
+                                    id="btnChooseCover">选择封面</button>
+                                <input type="file" id="filecover" accept="image/png, image/jepg"
+                                    style="display: none;" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 按钮 -->
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <!-- lay-filter="formDemo"  没有意义 -->
+                            <button class="layui-btn" lay-submit>发布</button>
+                            <button class="layui-btn layui-btn-primary" id="btnDraft" lay-submit>存为草稿</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 文章所有分类模板 -->
+        <script type="text/html" id="tpl-cate">
+            <option value="">请选择文章类别</option>
+            {{each data}}
+            <option value="{{$value.Id}}">{{$value.name}}</option>
+            {{/each}}
+        </script>
+
+
+        <!-- 导入layui.js -->
+        <script src="/assets/lib/layui/layui.all.js"></script>
+        <!-- 导入jQuery.js -->
+        <script src="/assets/lib/jquery.js"></script>
+        <!-- 导入Cropper.js -->
+        <script src="/assets/lib/cropper/Cropper.js"></script>
+        <script src="/assets/lib/cropper/jquery-cropper.js"></script>
+        <!-- 导入富文本脚本 -->
+        <script src="/assets/lib/tinymce/tinymce.min.js"></script>
+        <script src="/assets/lib/tinymce/tinymce_setup.js"></script>
+        <!-- 导入baseAPI.js -->
+        <script src="/assets/js/baseAPI.js"></script>
+        <!-- 导入模板引擎 -->
+        <script src="/assets/lib/template-web.js"></script>
+        <!-- 导入自己的js -->
+        <script src="/assets/js/article/art_edit.js"></script>
+    </body>
+
+    </html>
+</body>
+
+</html>
